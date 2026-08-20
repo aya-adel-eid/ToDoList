@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { ToDoListService } from '../../ToDoList/to-do-list.service';
+import { ToDoListService } from '../../to-do-list.service';
 
 @Component({
   selector: 'app-to-do-list-page',
@@ -9,6 +9,6 @@ import { ToDoListService } from '../../ToDoList/to-do-list.service';
 })
 export class ToDoListPageComponent {
   private readonly toDoList = inject(ToDoListService);
-  allToDoList = signal();
+
   getAllToDoList() {}
 }
