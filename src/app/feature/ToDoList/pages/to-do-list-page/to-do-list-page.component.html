@@ -31,8 +31,10 @@
     </div>
 
     <!-- cards -->
-    <div class="space-y-3 sm:space-y-4">
-      <app-to-dolist-card></app-to-dolist-card>
+    <div class="space-y-3 sm:space-y-4 flex flex-col gap-6">
+      @for (task of allTasks(); track task.id) {
+        <app-to-dolist-card [(task)]="task!"></app-to-dolist-card>
+      }
     </div>
   </div>
 </section>

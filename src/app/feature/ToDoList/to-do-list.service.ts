@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
+import { ITasks } from '../interfaces/ITasks';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +9,6 @@ import { environment } from '../../../environments/environment.development';
 export class ToDoListService {
   private readonly httpClient = inject(HttpClient);
   getAllToDoList() {
-    return this.httpClient.get(`${environment.baseUrl}/todos`);
+    return this.httpClient.get<ITasks>(`${environment.baseUrl}/todos`);
   }
 }
