@@ -19,10 +19,18 @@ export class FormAddtaskComponent {
   });
 
   submit(): void {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
+    if (this.form.valid) {
+      this.toDoListService.addTask(this.form.value!).subscribe({
+        next: (resp) => {
+          console.log(resp.data);
+          this.form.reset();
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
     }
+
     console.log(this.form.value);
   }
   toggle() {
