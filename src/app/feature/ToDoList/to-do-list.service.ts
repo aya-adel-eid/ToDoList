@@ -12,4 +12,5 @@ export class ToDoListService {
   getAllToDoList() {
     return this.httpClient.get<ITasks>(`${environment.baseUrl}/todos`);
   }
+  addTask(newTask: {}) {}
 }
