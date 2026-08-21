@@ -27,6 +27,10 @@ export class ToDoListService {
   updateTask(edit: {}, taskId: number) {
     return this.httpClient.patch<NeTasks>(`${environment.baseUrl}/todos/${taskId}`, edit);
   }
+  // delete
+  deleteTask(taskID: number) {
+    return this.httpClient.delete(`${environment.baseUrl}/todos/${taskID}`);
+  }
   toggle() {
     this.openModul.set(!this.openModul());
   }
