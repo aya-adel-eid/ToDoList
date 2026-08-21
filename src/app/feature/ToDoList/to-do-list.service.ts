@@ -10,7 +10,8 @@ import { INewTask } from '../interfaces/INewTask';
 export class ToDoListService {
   private readonly httpClient = inject(HttpClient);
   openModul = signal<boolean>(false);
-  allTasks = signal<Task[] | null>(null);
+  allTasks = signal<Task[]>([]);
+  editTask = signal<Task | null>(null);
   getAllToDoList() {
     return this.httpClient.get<ITasks>(`${environment.baseUrl}/todos`).subscribe({
       next: (resp) => {
@@ -21,6 +22,10 @@ export class ToDoListService {
   }
   addTask(newTask: {}) {
     return this.httpClient.post<NeTasks>(`${environment.baseUrl}/todos`, newTask);
+  }
+  // update
+  updateTask(edit: {}, taskId: number) {
+    return this.httpClient.patch<NeTasks>(`${environment.baseUrl}/todos/${taskId}`, edit);
   }
   toggle() {
     this.openModul.set(!this.openModul());
