@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { ITasks } from '../interfaces/ITasks';
 
@@ -8,6 +8,7 @@ import { ITasks } from '../interfaces/ITasks';
 })
 export class ToDoListService {
   private readonly httpClient = inject(HttpClient);
+  openModul = signal<boolean>(false);
   getAllToDoList() {
     return this.httpClient.get<ITasks>(`${environment.baseUrl}/todos`);
   }

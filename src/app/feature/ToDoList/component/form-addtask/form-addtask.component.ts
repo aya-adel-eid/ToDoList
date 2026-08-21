@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ToDoListService } from '../../to-do-list.service';
 @Component({
   selector: 'app-form-addtask',
   imports: [ReactiveFormsModule],
@@ -8,7 +9,8 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export class FormAddtaskComponent {
   private readonly fb = inject(FormBuilder);
-
+  private readonly toDoListService = inject(ToDoListService);
+  openModul = this.toDoListService.openModul;
   form = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(2)]],
     description: [''],
@@ -22,5 +24,8 @@ export class FormAddtaskComponent {
       return;
     }
     console.log(this.form.value);
+  }
+  toggle() {
+    this.openModul.set(!this.openModul());
   }
 }

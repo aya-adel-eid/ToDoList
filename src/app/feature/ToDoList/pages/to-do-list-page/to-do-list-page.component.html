@@ -1,5 +1,5 @@
 <section
-  class="bg-gradient-to-br from-[#6C5CE7] to-[#5B50FD] min-h-screen p-4 sm:p-10 flex items-start justify-center"
+  class="bg-gradient-to-br from-[#a297f0] to-[#a9a5ea] min-h-screen p-4 sm:p-10 flex items-start justify-center"
 >
   <div class="w-full max-w-3xl bg-white rounded-3xl shadow-2xl shadow-indigo-900/20 p-6 sm:p-10">
     <!-- Header -->
@@ -29,6 +29,15 @@
       </div>
       <p class="text-slate-400 font-medium text-sm sm:text-base">Stay organized, get more done</p>
     </div>
+    <!-- add Task -->
+    <div class="justify-center py-3 flex">
+      <button
+        class="bg-[#968aed] px-6 py-2 rounded-2xl text-white font-semibold cursor-pointer"
+        (click)="toggle()"
+      >
+        Add New Task
+      </button>
+    </div>
 
     <!-- cards -->
     <div class="space-y-3 sm:space-y-4 flex flex-col gap-6">
@@ -38,3 +47,6 @@
     </div>
   </div>
 </section>
+@if (openModul()) {
+  <app-form-addtask></app-form-addtask>
+}
