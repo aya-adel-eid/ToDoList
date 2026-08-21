@@ -23,6 +23,7 @@ export class FormAddtaskComponent {
       this.toDoListService.addTask(this.form.value!).subscribe({
         next: (resp) => {
           console.log(resp.data);
+          this.toDoListService.allTasks.update((val) => [resp?.data, ...(val ?? [])]);
           this.form.reset();
         },
         error: (error) => {
@@ -34,6 +35,6 @@ export class FormAddtaskComponent {
     console.log(this.form.value);
   }
   toggle() {
-    this.openModul.set(!this.openModul());
+    this.toDoListService.toggle();
   }
 }

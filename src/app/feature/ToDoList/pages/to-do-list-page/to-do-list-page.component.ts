@@ -12,20 +12,15 @@ import { FormAddtaskComponent } from '../../component/form-addtask/form-addtask.
 })
 export class ToDoListPageComponent implements OnInit {
   private readonly toDoListService = inject(ToDoListService);
-  allTasks = signal<Task[] | null>(null);
+  allTasks = this.toDoListService.allTasks;
   openModul = this.toDoListService.openModul;
   ngOnInit(): void {
     this.getAllToDoList();
   }
   getAllToDoList() {
-    this.toDoListService.getAllToDoList().subscribe({
-      next: (resp) => {
-        this.allTasks.set(resp.data);
-        console.log(resp.data);
-      },
-    });
+    this.toDoListService.getAllToDoList();
   }
   toggle() {
-    this.openModul.set(!this.openModul());
+    this.toDoListService.toggle();
   }
 }
